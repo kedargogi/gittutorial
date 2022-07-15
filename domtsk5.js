@@ -13,5 +13,5 @@ for(let i=0;i<listEle.length;i++){
     listEle[i].style.fontWeight = "bold";
 }
 
-//let list=document.getElementsByTagName("li");
-//list[4].style.backgroundColor="yellow";
+let list=document.getElementsByTagName("li");
+list[4].style.backgroundColor="yellow";
