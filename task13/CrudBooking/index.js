@@ -14,7 +14,7 @@ function saveData(event){
      }
      //use json.stringify to convert into string else it shows obj_obj
      //localStorage.setItem(user.email,JSON.stringify(user));
-     axios.post("https://crudcrud.com/api/44177cd8fa5c4f23a5c149d5ecfb350b/appointmentData",user)
+     axios.post("https://crudcrud.com/api/0cb5629fc3ef410390dc1c7585e7fe75/appointmentData",user)
      .then((res)=>{
         showUserOnScreen(res.data);
         //console.log(res);
@@ -45,12 +45,24 @@ function saveData(event){
          parentNode.innerHTML=parentNode.innerHTML + childHTML;
      }
  
-     document.addEventListener("DOMContentLoaded", function (event) {
-         Object.keys(localStorage).forEach((key) => {
-             let stringifiedDetailsOfPeople = localStorage.getItem(key);
-             let detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
-             showUserOnScreen(detailsOfPeople);
-             });
+     document.addEventListener("DOMContentLoaded",  ()=> {
+        axios.get("https://crudcrud.com/api/0cb5629fc3ef410390dc1c7585e7fe75/appointmentData")
+        .then((res)=>{
+            for(var i=0;i<res.data.length;i++){
+                showUserOnScreen(res.data[i]);
+            }
+            
+            //console.log(res);
+         })
+         .catch((err)=>{
+            //document.body.innerHTML=document.body.innerHTML +",<h4>Something went Wrong!</h4>";
+            console.log(err);
+        }) 
+        //  Object.keys(localStorage).forEach((key) => {
+        //      let stringifiedDetailsOfPeople = localStorage.getItem(key);
+        //      let detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
+        //      showUserOnScreen(detailsOfPeople);
+        //      });
          });
      
          function deleteUser(email){
