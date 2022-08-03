@@ -45,7 +45,7 @@ function saveData(event){
          let parentNode= document.getElementById('listofUsers');
          let childHTML = ` <li id=${user._id}>${user.name}  -  ${user.email}
                         <button onclick=deleteUser('${user._id}')>Delete User</button>
-                        <button onclick=editUser('${user._id}','${user.name}')>Edit User</button>
+                        <button onclick=editUser('${user.email}','${user.name}','${user._id}')>Edit User</button>
                             </li>`;
          parentNode.innerHTML=parentNode.innerHTML + childHTML;
      }
@@ -96,8 +96,8 @@ function saveData(event){
             
          }
 
-         function editUser(email,name){
+         function editUser(email,name,userId){
             document.getElementById('name').value=name;
             document.getElementById('email').value=email;
-            deleteUser(email);
+            deleteUser(userId);
          }
